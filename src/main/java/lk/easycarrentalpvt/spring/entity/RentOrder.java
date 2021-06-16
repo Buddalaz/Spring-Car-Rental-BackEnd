@@ -32,4 +32,8 @@ public class RentOrder {
     @ManyToOne()
     @JoinColumn(name = "driver_",referencedColumnName = "driveId")
     private Driver driver;
+
+    public RentOrder(String rentID) {
+        this.rentID = rentID;
+    }
 }
