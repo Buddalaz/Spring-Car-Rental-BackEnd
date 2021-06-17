@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api/v1/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -27,6 +28,9 @@ public class UserController {
         userService.addUser(dto);
         return new ResponseEntity(new StandardResponse("200","success",null,0L), HttpStatus.OK);
     }
+
+
+
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAllUsers(){

@@ -39,7 +39,7 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean deleteDriver(String id) {
-        if (driverRepo.existsById(id)){
+        if (!driverRepo.existsById(id)){
             throw new NotFoundException("Customer Not Found");
         }
         driverRepo.deleteById(id);
@@ -57,7 +57,9 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean updateDriver(DriverDTO dto) {
-        driverRepo.save(mapper.map(dto,Driver.class));
+        if (driverRepo.existsById(dto.getDriveId())){
+            driverRepo.save(mapper.map(dto,Driver.class));
+        }
         return true;
     }
 

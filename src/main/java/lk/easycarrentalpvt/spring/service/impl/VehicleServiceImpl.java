@@ -37,7 +37,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public boolean deleteVehicle(String id) {
-        if (vehicleRepo.existsById(id)){
+        if (!vehicleRepo.existsById(id)){
             throw new ValidateException("Enter Valid Vehicle Id");
         }
         vehicleRepo.deleteById(id);
@@ -63,9 +63,8 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public boolean updateVehicle(VehicleDTO vehicleDTO) {
         if (vehicleRepo.existsById(vehicleDTO.getVehicleID())){
-            throw new NotFoundException("There's No Vehicle To Update");
+            vehicleRepo.save(mapper.map(vehicleDTO,Vehicle.class));
         }
-        vehicleRepo.save(mapper.map(vehicleDTO,Vehicle.class));
         return true;
     }
 

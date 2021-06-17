@@ -37,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public boolean deleteCustomer(String id) {
-        if (customerRepo.existsById(id)) {
+        if (!customerRepo.existsById(id)) {
             throw new ValidateException("The Entered Customer Is Not Exits Please Enter Valid Customer");
         }
         customerRepo.deleteById(id);
@@ -64,11 +64,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean updateCustomer(CustomerDTO dto) {
         if (customerRepo.existsById(dto.getCustomerID())) {
-            throw new ValidateException("There Is No Customer To Update");
+            customerRepo.save(mapper.map(dto, Customer.class));
         }
 //        Customer customer = mapper.map(dto, Customer.class);
-        customerRepo.save(mapper.map(dto, Customer.class));
-        return false;
+        return true;
     }
 
     @Override

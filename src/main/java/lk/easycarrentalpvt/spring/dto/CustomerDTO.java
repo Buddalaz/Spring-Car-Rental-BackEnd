@@ -1,6 +1,7 @@
 package lk.easycarrentalpvt.spring.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,23 +12,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@JsonIgnoreProperties(value = {"rentOrder"},allowGetters = false,allowSetters = false)
 public class CustomerDTO {
     private String customerID;
     private String firstName;
-    private String lasTName;
+    private String lastName;
     private String nicNumber;
     private String driveLicenseNumber;
     private String address;
     private String contactNumber;
-    private List<RentOrderDTO> rentOrder = new ArrayList<>();
+//    private List<RentOrderDTO> rentOrder = new ArrayList<>();
 
-    public CustomerDTO(String customerID, String firstName, String lasTName, String nicNumber, String driveLicenseNumber, String address, String contactNumber) {
+
+
+    public CustomerDTO(String customerID) {
         this.customerID = customerID;
-        this.firstName = firstName;
-        this.lasTName = lasTName;
-        this.nicNumber = nicNumber;
-        this.driveLicenseNumber = driveLicenseNumber;
-        this.address = address;
-        this.contactNumber = contactNumber;
     }
 }

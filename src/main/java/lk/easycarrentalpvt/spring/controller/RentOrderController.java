@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/easycarrentalpvt/rentOrder")
+@RequestMapping("/api/v1/rentOrder")
 @CrossOrigin
 public class RentOrderController {
 

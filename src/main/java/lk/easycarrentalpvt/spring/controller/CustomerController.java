@@ -31,7 +31,7 @@ public class CustomerController {
     @PostMapping()
     public ResponseEntity saveCustomer(@RequestBody CustomerDTO customerDTO) {
         if (customerDTO.getCustomerID().trim().length() <= 0 || customerDTO.getAddress().trim().length() <= 0 ||
-                customerDTO.getFirstName().trim().length() <= 0 || customerDTO.getLasTName().trim().length() <= 0 ||
+                customerDTO.getFirstName().trim().length() <= 0 || customerDTO.getLastName().trim().length() <= 0 ||
                 customerDTO.getContactNumber().trim().length() <= 0 || customerDTO.getDriveLicenseNumber().trim().length() <= 0 ||
         customerDTO.getNicNumber().trim().length() <= 0) {
             throw new ValidateException("Fields Can't be empty");
@@ -49,9 +49,9 @@ public class CustomerController {
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity updateCustomer(CustomerDTO custDTO) {
+    public ResponseEntity updateCustomer(@RequestBody CustomerDTO custDTO) {
         if (custDTO.getCustomerID().trim().length() <= 0 || custDTO.getAddress().trim().length() <= 0 ||
-                custDTO.getFirstName().trim().length() <= 0 || custDTO.getLasTName().trim().length() <= 0 ||
+                custDTO.getFirstName().trim().length() <= 0 || custDTO.getLastName().trim().length() <= 0 ||
                 custDTO.getContactNumber().trim().length() <= 0 || custDTO.getDriveLicenseNumber().trim().length() <= 0 ||
                 custDTO.getNicNumber().trim().length() <= 0){
                 throw new ValidateException("Filds can't be Empty");

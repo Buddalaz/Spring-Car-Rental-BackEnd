@@ -1,11 +1,9 @@
 package lk.easycarrentalpvt.spring.controller;
 
 import lk.easycarrentalpvt.spring.dto.RentOrderDTO;
-import lk.easycarrentalpvt.spring.service.DriverService;
-import lk.easycarrentalpvt.spring.service.RentOrderService;
-import lk.easycarrentalpvt.spring.service.VehicleService;
+import lk.easycarrentalpvt.spring.dto.VehicleDTO;
+import lk.easycarrentalpvt.spring.service.*;
 import lk.easycarrentalpvt.spring.util.StandardResponse;
-import lk.easycarrentalpvt.spring.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/easycarrentalpvt/admin")
+@RequestMapping("/api/v1/admin")
 @CrossOrigin
 public class AdminController {
 
@@ -32,6 +30,9 @@ public class AdminController {
 
     @Autowired
     DriverService driverService;
+
+    @Autowired
+    MaintainsService maintainsService;
 
     @GetMapping("/customer/count")
     public ResponseEntity getCustomerCount(){
@@ -62,6 +63,14 @@ public class AdminController {
         ArrayList<RentOrderDTO> allRendOrders = rentOrderService.getAllRendOrders();
         return new ResponseEntity(new StandardResponse("200","success",allRendOrders,0L),HttpStatus.OK);
     }
+
+    @GetMapping("/allVehicles")
+    public ResponseEntity getAllVehicles(){
+        ArrayList<VehicleDTO> allVehicles = vehicleService.getAllVehicles();
+        return new ResponseEntity(new StandardResponse("200","success",allVehicles,0L),HttpStatus.OK);
+    }
+
+
 
 
 }

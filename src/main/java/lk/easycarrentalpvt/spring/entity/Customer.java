@@ -18,7 +18,7 @@ public class Customer {
     @Id
     private String customerID;
     private String firstName;
-    private String lasTName;
+    private String lastName;
     private String nicNumber;
     private String driveLicenseNumber;
     private String address;
@@ -26,5 +26,8 @@ public class Customer {
     @OneToMany(mappedBy = "customer",cascade = {CascadeType.ALL})
     private List<RentOrder> rentOrder;
 
+    public Customer(String customerID) {
+        this.customerID = customerID;
+    }
 }
 
