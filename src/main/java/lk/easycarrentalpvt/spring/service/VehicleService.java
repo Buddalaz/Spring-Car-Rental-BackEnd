@@ -16,4 +16,6 @@ public interface VehicleService {
     boolean updateVehicle(VehicleDTO vehicleDTO);
 
     Long getVehicleCount();
+
+    ArrayList<String> getVehicleIds();
 }

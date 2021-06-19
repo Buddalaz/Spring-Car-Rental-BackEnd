@@ -17,4 +17,6 @@ public interface CustomerService {
     boolean updateCustomer(CustomerDTO dto);
 
     Long getCustomerCount();
+
+    ArrayList<String> getCustomerIds();
 }

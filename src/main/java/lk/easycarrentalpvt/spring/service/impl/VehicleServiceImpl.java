@@ -73,4 +73,11 @@ public class VehicleServiceImpl implements VehicleService {
     public Long getVehicleCount() {
         return vehicleRepo.getVehicleCount();
     }
+
+    @Override
+    public ArrayList<String> getVehicleIds() {
+        return vehicleRepo.getVehicleIds();
+    }
+
+
 }

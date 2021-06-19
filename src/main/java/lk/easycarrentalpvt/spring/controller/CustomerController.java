@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.print.attribute.standard.Media;
+
 import java.util.ArrayList;
 
 @RestController
@@ -72,6 +72,13 @@ public class CustomerController {
     public ResponseEntity getCustomerCount(){
         Long customerCount = customerService.getCustomerCount();
         return new ResponseEntity(new StandardResponse("200","success",null,customerCount), HttpStatus.OK);
+    }
+
+    @GetMapping("/ids")
+    public ResponseEntity getCustomerIds(){
+        ArrayList<String> customerIds = customerService.getCustomerIds();
+        return new ResponseEntity(new StandardResponse("200","success",customerIds,0L),HttpStatus.OK);
+//        return "Customer IDs";
     }
 
 }

@@ -69,6 +69,11 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public ArrayList<String> getDriverIds() {
+        return driverRepo.getDriverIds();
+    }
+
+    @Override
     public ArrayList<DriverDTO> getAllDrivers() {
         List<Driver> driverList = driverRepo.findAll();
         return mapper.map(driverList, new TypeToken<ArrayList<DriverDTO>>() {

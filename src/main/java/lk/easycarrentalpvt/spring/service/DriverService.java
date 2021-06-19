@@ -17,4 +17,6 @@ public interface DriverService {
     boolean updateDriver(DriverDTO dto);
 
     Long getDriverCount();
+
+    ArrayList<String> getDriverIds();
 }

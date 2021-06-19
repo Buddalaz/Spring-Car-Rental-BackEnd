@@ -74,4 +74,9 @@ public class CustomerServiceImpl implements CustomerService {
     public Long getCustomerCount() {
         return customerRepo.getCustomerCount();
     }
+
+    @Override
+    public ArrayList<String> getCustomerIds() {
+        return customerRepo.getCustomerIds();
+    }
 }

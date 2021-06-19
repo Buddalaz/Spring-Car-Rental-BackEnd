@@ -73,4 +73,11 @@ public class VehicleController {
         Long vehicleCount = service.getVehicleCount();
         return new ResponseEntity(new StandardResponse("200","success",null,vehicleCount),HttpStatus.OK);
     }
+
+    @GetMapping("/ids")
+    public ResponseEntity getVehicleIds(){
+        ArrayList<String> customerIds = service.getVehicleIds();
+        return new ResponseEntity(new StandardResponse("200","success",customerIds,0L),HttpStatus.OK);
+//        return "Customer IDs";
+    }
 }

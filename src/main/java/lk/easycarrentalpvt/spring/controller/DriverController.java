@@ -67,4 +67,12 @@ public class DriverController {
         Long driverCount = driverService.getDriverCount();
         return new ResponseEntity(new StandardResponse("200","success",null,driverCount),HttpStatus.OK);
     }
+
+    @GetMapping("/ids")
+    public ResponseEntity getDriverIds(){
+        ArrayList<String> driverIds = driverService.getDriverIds();
+        return new ResponseEntity(new StandardResponse("200","success",driverIds,0L),HttpStatus.OK);
+    }
+
+
 }
