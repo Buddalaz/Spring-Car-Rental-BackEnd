@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RentOrderRepo extends JpaRepository<RentOrder,String> {
 
-    @Query(value = "select count() from RentOrder",nativeQuery = true)
+    @Query(value = "select count(rentID) from RentOrder",nativeQuery = true)
     Long geyRentOrderCount();
 }

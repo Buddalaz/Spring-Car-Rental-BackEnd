@@ -30,8 +30,15 @@ public class DriverController {
         return new ResponseEntity(new StandardResponse("200","success",null,0L), HttpStatus.OK);
     }
 
-    public String updateDriver(){
-        return "Update Driver";
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateDriver(@RequestBody DriverDTO dto){
+        if (dto.getDriveId().trim().length() <=0 || dto.getFirstName().trim().length()<=0 || dto.getLastName().trim().length() <=0 ||
+                dto.getEmail().trim().length()<=0 || dto.getContactNumber().trim().length() <= 0){
+            throw new ValidateException("Field's can't be Empty");
+        }
+        driverService.updateDriver(dto);
+        return new ResponseEntity(new StandardResponse("200","success",null,0L),HttpStatus.OK);
+//        return "Update Driver";
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,5 +60,11 @@ public class DriverController {
         ArrayList<DriverDTO> allDrivers = driverService.getAllDrivers();
         return new ResponseEntity(new StandardResponse("200","success",allDrivers,0L),HttpStatus.OK);
 //        return "Get All Drivers";
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity getDriverCount(){
+        Long driverCount = driverService.getDriverCount();
+        return new ResponseEntity(new StandardResponse("200","success",null,driverCount),HttpStatus.OK);
     }
 }

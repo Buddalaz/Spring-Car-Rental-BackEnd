@@ -37,7 +37,7 @@ public class MaintainsServiceImpl implements MaintainsService {
 
     @Override
     public boolean deleteMaintains(int id) {
-        if (maintainsRepo.existsById(id)) {
+        if (!maintainsRepo.existsById(id)) {
             throw new ValidateException("The Entered Customer Is Not Exits Please Enter Valid Customer");
         }
         maintainsRepo.deleteById(id);
@@ -48,7 +48,7 @@ public class MaintainsServiceImpl implements MaintainsService {
     public MaintainsDTO searchMaintains(int id) {
         Optional<Maintains> maintains = maintainsRepo.findById(id);
         if (maintains.isPresent()){
-            return mapper.map(maintains,MaintainsDTO.class);
+            return mapper.map(maintains.get(),MaintainsDTO.class);
         }
         return null;
     }
@@ -56,9 +56,9 @@ public class MaintainsServiceImpl implements MaintainsService {
     @Override
     public boolean updateMaintains(MaintainsDTO dto) {
         if (maintainsRepo.existsById(dto.getMaintainID())){
-            throw new ValidateException("Maintains Not Found");
+            maintainsRepo.save(mapper.map(dto,Maintains.class));
+//            throw new ValidateException("Maintains Not Found");
         }
-        maintainsRepo.save(mapper.map(dto,Maintains.class));
         return true;
     }
 

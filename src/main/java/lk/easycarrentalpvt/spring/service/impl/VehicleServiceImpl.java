@@ -28,7 +28,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public boolean addVehicle(VehicleDTO vehicleDTO) {
-        if (vehicleRepo.existsById(vehicleDTO.getVehicleID())){
+        if (vehicleRepo.existsById(vehicleDTO.getVehicleID())) {
             throw new ValidateException("Vehicle is Already Exists");
         }
         vehicleRepo.save(mapper.map(vehicleDTO, Vehicle.class));
@@ -37,7 +37,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public boolean deleteVehicle(String id) {
-        if (!vehicleRepo.existsById(id)){
+        if (!vehicleRepo.existsById(id)) {
             throw new ValidateException("Enter Valid Vehicle Id");
         }
         vehicleRepo.deleteById(id);
@@ -47,8 +47,8 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public VehicleDTO searchVehicle(String id) {
         Optional<Vehicle> vehicle = vehicleRepo.findById(id);
-        if (vehicle.isPresent()){
-            return mapper.map(vehicle,VehicleDTO.class);
+        if (vehicle.isPresent()) {
+            return mapper.map(vehicle.get(), VehicleDTO.class);
         }
         return null;
     }
@@ -56,14 +56,15 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public ArrayList<VehicleDTO> getAllVehicles() {
         List<Vehicle> vehicleList = vehicleRepo.findAll();
-        return mapper.map(vehicleList,new TypeToken<ArrayList<VehicleDTO>>(){}.getType());
+        return mapper.map(vehicleList, new TypeToken<ArrayList<VehicleDTO>>() {
+        }.getType());
 //        return null;
     }
 
     @Override
     public boolean updateVehicle(VehicleDTO vehicleDTO) {
-        if (vehicleRepo.existsById(vehicleDTO.getVehicleID())){
-            vehicleRepo.save(mapper.map(vehicleDTO,Vehicle.class));
+        if (vehicleRepo.existsById(vehicleDTO.getVehicleID())) {
+            vehicleRepo.save(mapper.map(vehicleDTO, Vehicle.class));
         }
         return true;
     }

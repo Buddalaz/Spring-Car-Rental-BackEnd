@@ -56,6 +56,7 @@ public class CustomerController {
                 custDTO.getNicNumber().trim().length() <= 0){
                 throw new ValidateException("Filds can't be Empty");
         }
+        customerService.updateCustomer(custDTO);
         return new ResponseEntity(new StandardResponse("200","success",null,0L),HttpStatus.OK);
 //        return "Update Customer";
     }
@@ -65,6 +66,12 @@ public class CustomerController {
         CustomerDTO searchCustomer = customerService.searchCustomer(id);
         return new ResponseEntity(new StandardResponse("200","success",searchCustomer,0L),HttpStatus.OK);
         //        return "Search Customer";
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity getCustomerCount(){
+        Long customerCount = customerService.getCustomerCount();
+        return new ResponseEntity(new StandardResponse("200","success",null,customerCount), HttpStatus.OK);
     }
 
 }

@@ -27,7 +27,7 @@ public class VehicleDTO {
     private double monthlyRent;
     private String dailyKM;
     private String monthlyKM;
-    private List<RentOrderDTO> rentOrder;
+//    private List<RentOrderDTO> rentOrder;
 
     public VehicleDTO(String vehicleID) {
         this.vehicleID = vehicleID;

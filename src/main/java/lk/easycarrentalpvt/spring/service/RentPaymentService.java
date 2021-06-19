@@ -14,5 +14,5 @@ public interface RentPaymentService {
 
     ArrayList<RentPaymentDTO> getAllRentPayment();
 
-    boolean updateRentPayment(RentPaymentDTO vehicleDTO);
+    boolean updateRentPayment(RentPaymentDTO paymentDTO);
 }

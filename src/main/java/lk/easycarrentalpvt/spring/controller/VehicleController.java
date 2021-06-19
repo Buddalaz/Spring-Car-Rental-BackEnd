@@ -20,7 +20,6 @@ public class VehicleController {
     @Autowired
     VehicleService service;
 
-
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveVehicle(@RequestBody VehicleDTO vehiDTO) {
         if (vehiDTO.getVehicleID().trim().length() <= 0 || vehiDTO.getBrand().trim().length() <= 0
@@ -67,5 +66,11 @@ public class VehicleController {
     public ResponseEntity getAllVehicle() {
         ArrayList<VehicleDTO> allVehicles = service.getAllVehicles();
         return new ResponseEntity(new StandardResponse("200", "success", allVehicles, 0L), HttpStatus.OK);
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity getVehicleCount(){
+        Long vehicleCount = service.getVehicleCount();
+        return new ResponseEntity(new StandardResponse("200","success",null,vehicleCount),HttpStatus.OK);
     }
 }

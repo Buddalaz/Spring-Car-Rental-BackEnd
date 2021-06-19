@@ -29,17 +29,17 @@ public class DriverServiceImpl implements DriverService {
 
     @Override
     public boolean addDriver(DriverDTO dto) {
-        if (driverRepo.existsById(dto.getDriveId())){
+        if (driverRepo.existsById(dto.getDriveId())) {
             throw new ValidateException("Driver is Already Exits");
         }
 //        Driver driver = new Driver(dto.getDriveId(), dto.getFirstName(), dto.getLastName(), dto.getEmail(), dto.getContactNumber());
-        driverRepo.save(mapper.map(dto,Driver.class));
+        driverRepo.save(mapper.map(dto, Driver.class));
         return true;
     }
 
     @Override
     public boolean deleteDriver(String id) {
-        if (!driverRepo.existsById(id)){
+        if (!driverRepo.existsById(id)) {
             throw new NotFoundException("Customer Not Found");
         }
         driverRepo.deleteById(id);
@@ -49,16 +49,16 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public DriverDTO searchDriver(String id) {
         Optional<Driver> searchDrivers = driverRepo.findById(id);
-        if (searchDrivers.isPresent()){
-            return mapper.map(searchDrivers,DriverDTO.class);
+        if (searchDrivers.isPresent()) {
+            return mapper.map(searchDrivers.get(), DriverDTO.class);
         }
         return null;
     }
 
     @Override
     public boolean updateDriver(DriverDTO dto) {
-        if (driverRepo.existsById(dto.getDriveId())){
-            driverRepo.save(mapper.map(dto,Driver.class));
+        if (driverRepo.existsById(dto.getDriveId())) {
+            driverRepo.save(mapper.map(dto, Driver.class));
         }
         return true;
     }
