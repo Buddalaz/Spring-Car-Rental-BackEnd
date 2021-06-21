@@ -37,7 +37,7 @@ public class DamageController {
 //        return "Damage Saved";
     }
 
-    @PutMapping
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateDamage(DamageDTO damageDTO) {
         if (damageDTO.getDamageFee() <= 0 || damageDTO.getReason().trim().length() <= 0 || damageDTO.getRentReturns() == null) {
             throw new ValidateException("Fields can't be Empty");
@@ -55,7 +55,7 @@ public class DamageController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity searchDamage(int id) {
+    public ResponseEntity searchDamage(@PathVariable int id) {
         damageService.searchDamage(id);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
 //        return "Damage Saved";
