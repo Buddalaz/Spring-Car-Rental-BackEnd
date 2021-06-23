@@ -8,9 +8,9 @@ public interface DamageService {
 
     boolean addDamage(DamageDTO dto);
 
-    boolean deleteDamage(int id);
+    boolean deleteDamage(Long id);
 
-    DamageDTO searchDamage(int id);
+    DamageDTO searchDamage(Long id);
 
     ArrayList<DamageDTO> getAllDamage();
 

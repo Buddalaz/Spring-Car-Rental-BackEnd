@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Data
 public class Maintains {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int maintainID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long maintainID;
     private String status;
     private String reason;
     private String maintainDate;

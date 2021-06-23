@@ -9,9 +9,9 @@ public interface UserService {
 
     boolean addUser(UserDTO dto);
 
-    boolean deleteUser(int id);
+    boolean deleteUser(Long id);
 
-    UserDTO searchUser(int id);
+    UserDTO searchUser(Long id);
 
     ArrayList<UserDTO> getAllUsers();
 

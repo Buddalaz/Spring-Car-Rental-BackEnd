@@ -28,7 +28,8 @@ public class VehicleController {
                 || vehiDTO.getColor().trim().length() <= 0 || vehiDTO.getPassNumber().trim().length() <= 0
                 || vehiDTO.getTransmissionType().trim().length() <= 0 || vehiDTO.getFuelType().trim().length() <= 0
                 || vehiDTO.getDailyRent() <= 0 || vehiDTO.getMonthlyRent() <= 0
-                || vehiDTO.getDailyKM().trim().length() <= 0 || vehiDTO.getMonthlyKM().trim().length() <= 0) {
+                || vehiDTO.getDailyKM().trim().length() <= 0 || vehiDTO.getMonthlyKM().trim().length() <= 0 ||
+                vehiDTO.getQyt() <= 0) {
             throw new ValidateException("Field's Can't be Empty");
         }
         service.addVehicle(vehiDTO);
@@ -43,7 +44,8 @@ public class VehicleController {
                 || vehiDTO.getColor().trim().length() <= 0 || vehiDTO.getPassNumber().trim().length() <= 0
                 || vehiDTO.getTransmissionType().trim().length() <= 0 || vehiDTO.getFuelType().trim().length() <= 0
                 || vehiDTO.getDailyRent() <= 0 || vehiDTO.getMonthlyRent() <= 0
-                || vehiDTO.getDailyKM().trim().length() <= 0 || vehiDTO.getMonthlyKM().trim().length() <= 0) {
+                || vehiDTO.getDailyKM().trim().length() <= 0 || vehiDTO.getMonthlyKM().trim().length() <= 0 ||
+                vehiDTO.getQyt() <= 0) {
             throw new ValidateException("Field's Can't be Empty");
         }
         service.updateVehicle(vehiDTO);
@@ -69,15 +71,33 @@ public class VehicleController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity getVehicleCount(){
+    public ResponseEntity getVehicleCount() {
         Long vehicleCount = service.getVehicleCount();
-        return new ResponseEntity(new StandardResponse("200","success",null,vehicleCount),HttpStatus.OK);
+        return new ResponseEntity(new StandardResponse("200", "success", null, vehicleCount), HttpStatus.OK);
     }
 
     @GetMapping("/ids")
-    public ResponseEntity getVehicleIds(){
+    public ResponseEntity getVehicleIds() {
         ArrayList<String> customerIds = service.getVehicleIds();
-        return new ResponseEntity(new StandardResponse("200","success",customerIds,0L),HttpStatus.OK);
+        return new ResponseEntity(new StandardResponse("200", "success", customerIds, 0L), HttpStatus.OK);
 //        return "Customer IDs";
+    }
+
+    @GetMapping("/countGeneral")
+    public ResponseEntity getVehGeneralCount() {
+        Long generalCount = service.getVehGeneralCount();
+        return new ResponseEntity(new StandardResponse("200", "success", null, generalCount), HttpStatus.OK);
+    }
+
+    @GetMapping("/countPremium")
+    public ResponseEntity getVehPremiumCount() {
+        Long premiumCount = service.getVehPremiumCount();
+        return new ResponseEntity(new StandardResponse("200", "success", null, premiumCount), HttpStatus.OK);
+    }
+
+    @GetMapping("/countLuxury")
+    public ResponseEntity getVehLuxuryCount() {
+        Long luxuryCount = service.getVehLuxuryCount();
+        return new ResponseEntity(new StandardResponse("200", "success", null, luxuryCount), HttpStatus.OK);
     }
 }

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public interface RentPaymentService {
     boolean addRentPayment(RentPaymentDTO paymentDTO);
 
-    boolean deleteRentPayment(int id);
+    boolean deleteRentPayment(Long id);
 
-    RentPaymentDTO searchRentPayment(int id);
+    RentPaymentDTO searchRentPayment(Long id);
 
     ArrayList<RentPaymentDTO> getAllRentPayment();
 

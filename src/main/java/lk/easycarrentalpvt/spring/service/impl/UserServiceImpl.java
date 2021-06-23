@@ -37,12 +37,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean deleteUser(int id) {
+    public boolean deleteUser(Long id) {
         return false;
     }
 
     @Override
-    public UserDTO searchUser(int id) {
+    public UserDTO searchUser(Long id) {
         return null;
     }
 

@@ -36,7 +36,7 @@ public class MaintainsServiceImpl implements MaintainsService {
     }
 
     @Override
-    public boolean deleteMaintains(int id) {
+    public boolean deleteMaintains(Long id) {
         if (!maintainsRepo.existsById(id)) {
             throw new ValidateException("The Entered Customer Is Not Exits Please Enter Valid Customer");
         }
@@ -45,7 +45,7 @@ public class MaintainsServiceImpl implements MaintainsService {
     }
 
     @Override
-    public MaintainsDTO searchMaintains(int id) {
+    public MaintainsDTO searchMaintains(Long id) {
         Optional<Maintains> maintains = maintainsRepo.findById(id);
         if (maintains.isPresent()){
             return mapper.map(maintains.get(),MaintainsDTO.class);

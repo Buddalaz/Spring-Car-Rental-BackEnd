@@ -75,6 +75,21 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    public Long getVehGeneralCount() {
+        return vehicleRepo.getVehGeneralCount();
+    }
+
+    @Override
+    public Long getVehPremiumCount() {
+        return vehicleRepo.getVehPremiumCount();
+    }
+
+    @Override
+    public Long getVehLuxuryCount() {
+        return vehicleRepo.getVehLuxuryCount();
+    }
+
+    @Override
     public ArrayList<String> getVehicleIds() {
         return vehicleRepo.getVehicleIds();
     }

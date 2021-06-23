@@ -43,7 +43,7 @@ public class RentPaymentServiceImpl implements RentPaymentService {
     }
 
     @Override
-    public boolean deleteRentPayment(int id) {
+    public boolean deleteRentPayment(Long id) {
         if (!rentPaymentRepo.existsById(id)){
             throw new ValidateException("payment is already exits");
         }
@@ -52,7 +52,7 @@ public class RentPaymentServiceImpl implements RentPaymentService {
     }
 
     @Override
-    public RentPaymentDTO searchRentPayment(int id) {
+    public RentPaymentDTO searchRentPayment(Long id) {
         Optional<RentPayment> rentPayment = rentPaymentRepo.findById(id);
         if (rentPayment.isPresent()){
             return mapper.map(rentPayment.get(),RentPaymentDTO.class);

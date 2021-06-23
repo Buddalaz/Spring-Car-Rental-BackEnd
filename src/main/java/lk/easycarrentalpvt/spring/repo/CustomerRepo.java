@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface CustomerRepo extends JpaRepository<Customer,String > {
+public interface CustomerRepo extends JpaRepository<Customer,String> {
 
     @Query(value = "select count(customerID) from Customer",nativeQuery = true)
     Long getCustomerCount();

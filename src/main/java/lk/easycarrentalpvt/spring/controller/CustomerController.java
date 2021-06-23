@@ -28,7 +28,7 @@ public class CustomerController {
 //        return "Get All Customer";
     }
 
-    @PostMapping()
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveCustomer(@RequestBody CustomerDTO customerDTO) {
         if (customerDTO.getCustomerID().trim().length() <= 0 || customerDTO.getAddress().trim().length() <= 0 ||
                 customerDTO.getFirstName().trim().length() <= 0 || customerDTO.getLastName().trim().length() <= 0 ||

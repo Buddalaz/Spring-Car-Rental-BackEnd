@@ -28,15 +28,16 @@ public class RentReturnsImpl implements RentReturnsService {
 
     @Override
     public boolean addReturns(RentReturnsDTO dto) {
-        if (returnsRepo.existsById(dto.getReturnID())){
-            throw new ValidateException("Return Already Exists");
-        }
+//        if (returnsRepo.existsById(dto.getReturnID())){
+//            throw new ValidateException("Return Already Exists");
+//        }
+        System.out.println(dto.toString());
         returnsRepo.save(mapper.map(dto, RentReturns.class));
         return true;
     }
 
     @Override
-    public boolean deleteReturns(int id) {
+    public boolean deleteReturns(Long id) {
         if (!returnsRepo.existsById(id)){
             throw new ValidateException("Please Enter Valid Exists Id");
         }
@@ -45,7 +46,7 @@ public class RentReturnsImpl implements RentReturnsService {
     }
 
     @Override
-    public RentReturnsDTO searchReturns(int id) {
+    public RentReturnsDTO searchReturns(Long id) {
         Optional<RentReturns> rentReturns = returnsRepo.findById(id);
         if (rentReturns.isPresent()){
             return mapper.map(rentReturns.get(),RentReturnsDTO.class);

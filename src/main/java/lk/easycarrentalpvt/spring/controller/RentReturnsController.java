@@ -23,10 +23,10 @@ public class RentReturnsController {
     RentReturnsService rentReturnsService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity saveRentReturns(RentReturnsDTO dto) {
-        if (dto.getRDate().trim().length() <= 0 || dto.getUsedKm() <= 0 || dto.getReason().trim().length() <= 0) {
-            throw new ValidateException("Field's Can't be Empty");
-        }
+    public ResponseEntity saveRentReturns(@RequestBody RentReturnsDTO dto) {
+//        if (dto.getRDate().trim().length() <= 0 || dto.getUsedKm() <= 0 || dto.getReason().trim().length() <= 0) {
+//            throw new ValidateException("Field's Can't be Empty");
+//        }
         rentReturnsService.addReturns(dto);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
     }

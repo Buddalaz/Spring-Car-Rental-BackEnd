@@ -28,6 +28,7 @@ public class Vehicle {
     private double monthlyRent;
     private String dailyKM;
     private String monthlyKM;
+    private int qyt;
     @OneToMany(mappedBy = "vehicle",cascade = {CascadeType.ALL})
     private List<RentOrder> rentOrder;
 

@@ -27,6 +27,7 @@ public class VehicleDTO {
     private double monthlyRent;
     private String dailyKM;
     private String monthlyKM;
+    private int qyt;
 //    private List<RentOrderDTO> rentOrder;
 
     public VehicleDTO(String vehicleID) {

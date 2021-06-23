@@ -18,7 +18,7 @@ public class AppWideExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity handleException(Exception e){
-        return new ResponseEntity(new StandardResponse("500","Error",e.getMessage(),0L), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity(new StandardResponse("500","Error",e,0L), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(NotFoundException.class)

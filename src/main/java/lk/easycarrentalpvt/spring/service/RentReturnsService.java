@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public interface RentReturnsService {
     boolean addReturns(RentReturnsDTO dto);
 
-    boolean deleteReturns(int id);
+    boolean deleteReturns(Long id);
 
-    RentReturnsDTO searchReturns(int id);
+    RentReturnsDTO searchReturns(Long id);
 
     ArrayList<RentReturnsDTO> getAllReturns();
 

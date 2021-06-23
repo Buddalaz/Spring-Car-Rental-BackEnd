@@ -50,14 +50,14 @@ public class MaintainsController {
     }
 
     @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteMaintains(int id) {
+    public ResponseEntity deleteMaintains(Long id) {
         maintainsService.deleteMaintains(id);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
 //        return "Maintains Saved";
     }
 
     @GetMapping(value = "/search/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity searchMaintains(@PathVariable int id) {
+    public ResponseEntity searchMaintains(@PathVariable Long id) {
         MaintainsDTO searchMaintains = maintainsService.searchMaintains(id);
         return new ResponseEntity(new StandardResponse("200", "success", searchMaintains, 0L), HttpStatus.OK);
 //        return "Maintains Saved";

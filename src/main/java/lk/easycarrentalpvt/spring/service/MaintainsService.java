@@ -9,9 +9,9 @@ public interface MaintainsService {
 
     boolean addMaintains(MaintainsDTO dto);
 
-    boolean deleteMaintains(int id);
+    boolean deleteMaintains(Long id);
 
-    MaintainsDTO searchMaintains(int id);
+    MaintainsDTO searchMaintains(Long id);
 
     ArrayList<MaintainsDTO> getAllMaintains();
 

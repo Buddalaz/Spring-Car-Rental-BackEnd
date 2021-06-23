@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Data
 public class Damage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int damageID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long damageID;
     private double damageFee;
     private String reason;
     @OneToOne

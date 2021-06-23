@@ -36,7 +36,7 @@ public class DamageServiceImpl implements DamageService {
     }
 
     @Override
-    public boolean deleteDamage(int id) {
+    public boolean deleteDamage(Long id) {
         if (!damageRepo.existsById(id)){
             throw new ValidateException("Entered Value is Not Exists");
         }
@@ -45,7 +45,7 @@ public class DamageServiceImpl implements DamageService {
     }
 
     @Override
-    public DamageDTO searchDamage(int id) {
+    public DamageDTO searchDamage(Long id) {
         Optional<Damage> damage = damageRepo.findById(id);
         if (damage.isPresent()){
             return mapper.map(damage.get(),DamageDTO.class);

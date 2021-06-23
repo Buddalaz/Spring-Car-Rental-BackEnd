@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Data
 public class RentReturns {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int returnID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long returnID;
     private String rDate;
     private double usedKm;
     private String reason;

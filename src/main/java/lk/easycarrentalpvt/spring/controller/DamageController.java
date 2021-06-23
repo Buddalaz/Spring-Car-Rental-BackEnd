@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("api/v1/damage")
+@RequestMapping("/api/v1/damage")
 @CrossOrigin
 public class DamageController {
 
@@ -21,7 +21,7 @@ public class DamageController {
     DamageService damageService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity addDamage(DamageDTO damageDTO) {
+    public ResponseEntity addDamage(@RequestBody DamageDTO damageDTO) {
         if (damageDTO.getDamageFee() <= 0 || damageDTO.getReason().trim().length() <= 0 || damageDTO.getRentReturns() == null) {
             throw new ValidateException("Fields can't be Empty");
         }
@@ -37,8 +37,8 @@ public class DamageController {
 //        return "Damage Saved";
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity updateDamage(DamageDTO damageDTO) {
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateDamage(@RequestBody DamageDTO damageDTO) {
         if (damageDTO.getDamageFee() <= 0 || damageDTO.getReason().trim().length() <= 0 || damageDTO.getRentReturns() == null) {
             throw new ValidateException("Fields can't be Empty");
         }
@@ -48,14 +48,14 @@ public class DamageController {
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteDamage( int id) {
+    public ResponseEntity deleteDamage(Long id) {
         damageService.deleteDamage(id);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
 //        return "Damage Saved";
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity searchDamage(@PathVariable int id) {
+    public ResponseEntity searchDamage(@PathVariable Long id) {
         damageService.searchDamage(id);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
 //        return "Damage Saved";

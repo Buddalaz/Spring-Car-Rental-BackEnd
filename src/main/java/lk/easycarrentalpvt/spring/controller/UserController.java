@@ -29,9 +29,6 @@ public class UserController {
         return new ResponseEntity(new StandardResponse("200","success",null,0L), HttpStatus.OK);
     }
 
-
-
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAllUsers(){
         ArrayList<UserDTO> allUsers = userService.getAllUsers();

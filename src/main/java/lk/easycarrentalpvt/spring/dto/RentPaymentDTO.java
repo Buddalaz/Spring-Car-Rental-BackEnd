@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Data
 //@JsonIgnoreProperties(value = "rentPayID",allowGetters = true,allowSetters = false)
 public class RentPaymentDTO {
-    private int rentPayID;
+    private long rentPayID;
     private String date;
     private double fee;
     private String payType;

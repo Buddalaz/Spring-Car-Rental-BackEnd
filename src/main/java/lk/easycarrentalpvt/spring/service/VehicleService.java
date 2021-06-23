@@ -17,5 +17,11 @@ public interface VehicleService {
 
     Long getVehicleCount();
 
+    Long getVehGeneralCount();
+
+    Long getVehPremiumCount();
+
+    Long getVehLuxuryCount();
+
     ArrayList<String> getVehicleIds();
 }

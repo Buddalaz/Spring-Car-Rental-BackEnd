@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(value = {"damageID"},allowSetters = false,allowGetters = true)
 public class DamageDTO {
-    private int damageID;
+    private long damageID;
     private double damageFee;
     private String reason;
     private RentReturnsDTO rentReturns;
