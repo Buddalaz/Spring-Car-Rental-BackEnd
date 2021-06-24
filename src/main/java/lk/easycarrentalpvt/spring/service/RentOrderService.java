@@ -2,8 +2,11 @@ package lk.easycarrentalpvt.spring.service;
 
 import lk.easycarrentalpvt.spring.dto.CustomerDTO;
 import lk.easycarrentalpvt.spring.dto.RentOrderDTO;
+import lk.easycarrentalpvt.spring.entity.RentOrder;
+import org.springframework.data.repository.query.Param;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface RentOrderService {
 

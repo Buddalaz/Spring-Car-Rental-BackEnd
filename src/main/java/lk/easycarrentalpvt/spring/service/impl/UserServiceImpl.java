@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -56,5 +57,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean updateUser(UserDTO dto) {
         return false;
+    }
+
+    @Override
+    public UserDTO searchUserByUserNameAndPassword(String username, String password) {
+        Optional<User> userNameAndPassword = userRepo.findUserByUserNameAndPassword(username, password);
+        if (userNameAndPassword.isPresent()){
+            return mapper.map(userNameAndPassword.get(), UserDTO.class);
+        }
+        return null;
     }
 }

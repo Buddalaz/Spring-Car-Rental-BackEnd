@@ -4,6 +4,7 @@ package lk.easycarrentalpvt.spring.service;
 import lk.easycarrentalpvt.spring.dto.UserDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface UserService {
 
@@ -16,5 +17,7 @@ public interface UserService {
     ArrayList<UserDTO> getAllUsers();
 
     boolean updateUser(UserDTO dto);
+
+    UserDTO searchUserByUserNameAndPassword(String username,String password);
 
 }

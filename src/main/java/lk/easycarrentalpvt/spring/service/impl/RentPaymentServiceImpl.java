@@ -30,6 +30,7 @@ public class RentPaymentServiceImpl implements RentPaymentService {
         if (rentPaymentRepo.existsById(paymentDTO.getRentPayID())){
             throw new ValidateException("payment is already exits");
         }
+        System.out.println(paymentDTO);
         rentPaymentRepo.save(mapper.map(paymentDTO, RentPayment.class));
         return true;
     }

@@ -23,7 +23,7 @@ public class RentPaymentController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveRentPayments(@RequestBody RentPaymentDTO rentPayDTO) {
         if (rentPayDTO.getDate().trim().length() <= 0 || rentPayDTO.getFee() <= 0 || rentPayDTO.getPayType().trim().
-                length() <= 0 || rentPayDTO.getRentOrder() == null) {
+                length() <= 0) {
             throw new ValidateException("Feild's Can't be Empty");
         }
         rentPaymentService.addRentPayment(rentPayDTO);
@@ -34,7 +34,7 @@ public class RentPaymentController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity updateRentPayments(@RequestBody RentPaymentDTO rentPayDTO) {
         if (rentPayDTO.getDate().trim().length() <= 0 || rentPayDTO.getFee() <= 0 || rentPayDTO.getPayType().trim().
-                length() <= 0 || rentPayDTO.getRentOrder() == null) {
+                length() <= 0) {
             throw new ValidateException("Feild's Can't be Empty");
         }
         rentPaymentService.updateRentPayment(rentPayDTO);
@@ -43,14 +43,14 @@ public class RentPaymentController {
     }
 
     @GetMapping(value = "/search/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity searchRentPayments(@PathVariable Long id) {
+    public ResponseEntity searchRentPayments(@PathVariable long id) {
         RentPaymentDTO paymentDTO = rentPaymentService.searchRentPayment(id);
         return new ResponseEntity(new StandardResponse("200", "success", paymentDTO, 0L), HttpStatus.OK);
 //        return "Payment Search";
     }
 
     @DeleteMapping(params = {"id"}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity deleteRentPayments(Long id) {
+    public ResponseEntity deleteRentPayments(long id) {
         rentPaymentService.deleteRentPayment(id);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
 //        return "Payment Deleted";

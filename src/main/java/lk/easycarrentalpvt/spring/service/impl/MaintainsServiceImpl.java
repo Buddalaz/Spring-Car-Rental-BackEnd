@@ -31,6 +31,7 @@ public class MaintainsServiceImpl implements MaintainsService {
         if (maintainsRepo.existsById(dto.getMaintainID())){
             throw new ValidateException("This Maintains still maintain");
         }
+        System.out.println(dto);
         maintainsRepo.save(mapper.map(dto, Maintains.class));
         return true;
     }

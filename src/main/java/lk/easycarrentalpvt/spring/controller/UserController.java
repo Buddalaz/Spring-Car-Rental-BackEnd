@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user")
@@ -33,6 +34,13 @@ public class UserController {
     public ResponseEntity getAllUsers(){
         ArrayList<UserDTO> allUsers = userService.getAllUsers();
         return new ResponseEntity(new StandardResponse("200","success",allUsers,0L),HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{username}/{password}")
+    public ResponseEntity searchUser(@PathVariable String username,@PathVariable String password){
+        UserDTO userDTO = userService.searchUserByUserNameAndPassword(username, password);
+        return new ResponseEntity(new StandardResponse("200","success",userDTO,0L),HttpStatus.OK);
+//        return "username and password";
     }
 
 }

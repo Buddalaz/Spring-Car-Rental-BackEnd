@@ -23,6 +23,8 @@ public class Customer {
     private String driveLicenseNumber;
     private String address;
     private String contactNumber;
+    private String userName;
+    private String password;
     @OneToMany(mappedBy = "customer",cascade = {CascadeType.ALL})
     private List<RentOrder> rentOrder;
 

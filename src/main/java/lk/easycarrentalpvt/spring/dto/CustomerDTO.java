@@ -21,6 +21,8 @@ public class CustomerDTO {
     private String driveLicenseNumber;
     private String address;
     private String contactNumber;
+    private String userName;
+    private String password;
 //    private List<RentOrderDTO> rentOrder = new ArrayList<>();
 
 
