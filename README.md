@@ -5,7 +5,8 @@ car rental and schedule the booking etc. integrate with a front end.
 
 # Tech/Framework/lib used
   * Java 8
-  * MySQl
+  * MySQL
+  * Hibernate ORM tool
   * Spring web mvc Framework
   * Spring Data JPA
   * Lombok
