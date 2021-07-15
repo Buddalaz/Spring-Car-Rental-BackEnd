@@ -15,6 +15,8 @@ car rental and schedule the booking etc. integrate with a front end.
 # Architectural Design
 Resource Oriented Architecture
 
+Also, used Maven project managment tool to continue to build up this project
+
 
   
   
