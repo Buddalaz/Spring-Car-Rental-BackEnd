@@ -1,6 +1,7 @@
 package lk.easycarrentalpvt.spring.service;
 
 import lk.easycarrentalpvt.spring.dto.CustomerDTO;
+import lk.easycarrentalpvt.spring.dto.UserDTO;
 
 import java.util.ArrayList;
 
@@ -19,4 +20,6 @@ public interface CustomerService {
     Long getCustomerCount();
 
     ArrayList<String> getCustomerIds();
+
+    CustomerDTO searchCustomerByUserNameAndPassword(String username, String password);
 }

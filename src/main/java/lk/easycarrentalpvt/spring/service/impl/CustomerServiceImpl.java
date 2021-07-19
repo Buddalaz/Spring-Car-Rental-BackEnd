@@ -1,7 +1,9 @@
 package lk.easycarrentalpvt.spring.service.impl;
 
 import lk.easycarrentalpvt.spring.dto.CustomerDTO;
+import lk.easycarrentalpvt.spring.dto.UserDTO;
 import lk.easycarrentalpvt.spring.entity.Customer;
+import lk.easycarrentalpvt.spring.entity.User;
 import lk.easycarrentalpvt.spring.exception.ValidateException;
 import lk.easycarrentalpvt.spring.repo.CustomerRepo;
 import lk.easycarrentalpvt.spring.service.CustomerService;
@@ -78,5 +80,14 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public ArrayList<String> getCustomerIds() {
         return customerRepo.getCustomerIds();
+    }
+
+    @Override
+    public CustomerDTO searchCustomerByUserNameAndPassword(String username, String password) {
+        Optional<Customer> customer = customerRepo.findCustomerByUserNameAndPassword(username, password);
+        if (customer.isPresent()){
+            return mapper.map(customer.get(), CustomerDTO.class);
+        }
+        return null;
     }
 }

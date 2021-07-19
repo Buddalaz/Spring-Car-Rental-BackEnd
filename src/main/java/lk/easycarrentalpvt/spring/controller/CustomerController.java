@@ -1,6 +1,7 @@
 package lk.easycarrentalpvt.spring.controller;
 
 import lk.easycarrentalpvt.spring.dto.CustomerDTO;
+import lk.easycarrentalpvt.spring.dto.UserDTO;
 import lk.easycarrentalpvt.spring.exception.ValidateException;
 import lk.easycarrentalpvt.spring.service.CustomerService;
 import lk.easycarrentalpvt.spring.util.StandardResponse;
@@ -112,6 +113,13 @@ public class CustomerController {
     public ResponseEntity getCustomerIds(){
         ArrayList<String> customerIds = customerService.getCustomerIds();
         return new ResponseEntity(new StandardResponse("200","success",customerIds,0L),HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{username}/{password}")
+    public ResponseEntity searchCustomer(@PathVariable String username,@PathVariable String password){
+        CustomerDTO customerDTO = customerService.searchCustomerByUserNameAndPassword(username, password);
+        return new ResponseEntity(new StandardResponse("200","success",customerDTO,0L),HttpStatus.OK);
+//        return "username and password";
     }
 
 }

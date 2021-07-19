@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 public interface CustomerRepo extends JpaRepository<Customer,String> {
 
@@ -14,6 +14,8 @@ public interface CustomerRepo extends JpaRepository<Customer,String> {
 
     @Query(value = "select customerID from Customer",nativeQuery = true)
     ArrayList<String> getCustomerIds();
+
+    Optional<Customer> findCustomerByUserNameAndPassword(String username, String password);
 
     //native HQL
 //    @Query(value = "select c.customerID from Customer c")
