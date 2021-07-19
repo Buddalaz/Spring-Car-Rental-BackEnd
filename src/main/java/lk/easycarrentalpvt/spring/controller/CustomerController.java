@@ -9,8 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 @RestController
@@ -25,27 +29,59 @@ public class CustomerController {
     public ResponseEntity getAllCustomer() {
         ArrayList<CustomerDTO> allCustomers = customerService.getAllCustomers();
         return new ResponseEntity(new StandardResponse("200", "Done", allCustomers,0L), HttpStatus.OK);
-//        return "Get All Customer";
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity saveCustomer(@RequestBody CustomerDTO customerDTO) {
-        if (customerDTO.getCustomerID().trim().length() <= 0 || customerDTO.getAddress().trim().length() <= 0 ||
-                customerDTO.getFirstName().trim().length() <= 0 || customerDTO.getLastName().trim().length() <= 0 ||
-                customerDTO.getContactNumber().trim().length() <= 0 || customerDTO.getDriveLicenseNumber().trim().length() <= 0 ||
-        customerDTO.getNicNumber().trim().length() <= 0) {
-            throw new ValidateException("Fields Can't be empty");
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity saveCustomer(CustomerDTO customerDTO, @RequestParam("customerID") String custId,
+    @RequestParam("firstName") String fname, @RequestParam("lastName") String lname, @RequestParam("nicNumber") String nicNumber,@RequestParam("driveLicenseNumber") String driverNumber,
+    @RequestParam("address") String address, @RequestParam("contactNumber") String conNumber, @RequestParam("userName") String userName, @RequestParam("password") String pass,
+    @RequestPart("myFile") MultipartFile myFile) {
+
+//        System.out.println(myFile.getOriginalFilename());
+
+        String projectPath;
+        File uploadsDir;
+
+        try {
+            projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
+
+//            System.out.println(projectPath);
+
+            // Let's create a folder there for uploading purposes, if not exists
+            uploadsDir = new File(projectPath + "/uploads/nic");
+            uploadsDir.mkdir();
+            // It is time to transfer the file into the newly created dir
+            myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
+//            return new ResponseEntity(new StandardResponse("200"));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            throw new ValidateException("There is something wrong with the Url!!!");
+        } catch (IOException e) {
+//            e.printStackTrace();
+            throw new ValidateException("There is something wrong Inputs");
         }
+
+        customerDTO.setCustomerID(custId);
+        customerDTO.setFirstName(fname);
+        customerDTO.setLastName(lname);
+        customerDTO.setNicNumber(nicNumber);
+        customerDTO.setDriveLicenseNumber(driverNumber);
+        customerDTO.setAddress(address);
+        customerDTO.setContactNumber(conNumber);
+        customerDTO.setUserName(userName);
+        customerDTO.setPassword(pass);
+        customerDTO.setFilePath(myFile.getOriginalFilename());
+
+//        System.out.println(customerDTO);
+
         customerService.addCustomer(customerDTO);
         return new ResponseEntity(new StandardResponse("200","success",null,0L),HttpStatus.OK);
-//        return "Save Customer";
     }
 
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity deleteCustomer(String id) {
         customerService.deleteCustomer(id);
         return new ResponseEntity(new StandardResponse("200","success",null,0L),HttpStatus.OK);
-//        return "Delete Customer";
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,14 +94,12 @@ public class CustomerController {
         }
         customerService.updateCustomer(custDTO);
         return new ResponseEntity(new StandardResponse("200","success",null,0L),HttpStatus.OK);
-//        return "Update Customer";
     }
 
     @GetMapping(path = "/search/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity searchCustomer(@PathVariable String id) {
         CustomerDTO searchCustomer = customerService.searchCustomer(id);
         return new ResponseEntity(new StandardResponse("200","success",searchCustomer,0L),HttpStatus.OK);
-        //        return "Search Customer";
     }
 
     @GetMapping("/count")
@@ -78,7 +112,6 @@ public class CustomerController {
     public ResponseEntity getCustomerIds(){
         ArrayList<String> customerIds = customerService.getCustomerIds();
         return new ResponseEntity(new StandardResponse("200","success",customerIds,0L),HttpStatus.OK);
-//        return "Customer IDs";
     }
 
 }

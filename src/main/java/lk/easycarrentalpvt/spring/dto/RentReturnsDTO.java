@@ -10,12 +10,12 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-//@JsonIgnoreProperties(value = "returnID",allowGetters = true,allowSetters = false)
+@JsonIgnoreProperties(value = "returnID",allowGetters = true,allowSetters = false)
 public class RentReturnsDTO {
     private long returnID;
     private String rDate;
     private double usedKm;
     private String reason;
-    private RentOrderDTO rentOrder;
+    private RentOrderDTO rentorder;
 
 }

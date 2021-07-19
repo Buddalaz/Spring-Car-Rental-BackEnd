@@ -18,7 +18,17 @@ public class RentReturns {
     private double usedKm;
     private String reason;
     @OneToOne
-    private RentOrder rentOrder;
+    @JoinColumn(name = "rentID",referencedColumnName = "rentID")
+    private RentOrder rentorder;
+    @OneToOne(mappedBy = "rentreturns")
+    private RentPayment rentPayment;
 
+
+//    private long returnID;
+//    private String rDate;
+//    private double usedKm;
+//    private String reason;
+//    @OneToOne
+//    private RentOrder rentOrder;
 
 }

@@ -29,6 +29,8 @@ public class RentOrder {
     @ManyToOne()
     @JoinColumn(name = "driver_",referencedColumnName = "driveId")
     private Driver driver;
+    @OneToOne(mappedBy = "rentorder",cascade = {CascadeType.ALL})
+    private RentReturns rentreturns;
 
     public RentOrder(String rentID) {
         this.rentID = rentID;

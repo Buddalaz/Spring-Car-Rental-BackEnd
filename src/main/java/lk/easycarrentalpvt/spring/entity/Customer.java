@@ -25,6 +25,7 @@ public class Customer {
     private String contactNumber;
     private String userName;
     private String password;
+    private String filePath;
     @OneToMany(mappedBy = "customer",cascade = {CascadeType.ALL})
     private List<RentOrder> rentOrder;
 

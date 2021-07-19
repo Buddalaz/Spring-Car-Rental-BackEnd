@@ -18,5 +18,11 @@ public class RentPayment {
     private double fee;
     private String payType;
     @OneToOne
-    private RentOrder rentOrder;
+    @JoinColumn(name = "returnID",referencedColumnName = "returnID")
+    private RentReturns rentreturns;
+
+//    private long rentPayID;
+//    private String date;
+//    private double fee;
+//    private String payType;
 }

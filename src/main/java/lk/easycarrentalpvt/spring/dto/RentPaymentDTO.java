@@ -12,11 +12,11 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-//@JsonIgnoreProperties(value = "rentPayID",allowGetters = true,allowSetters = false)
+@JsonIgnoreProperties(value = "rentPayID",allowGetters = true,allowSetters = false)
 public class RentPaymentDTO {
     private long rentPayID;
     private String date;
     private double fee;
     private String payType;
-    private RentOrderDTO rentOrder;
+    private RentReturnsDTO rentreturns;
 }

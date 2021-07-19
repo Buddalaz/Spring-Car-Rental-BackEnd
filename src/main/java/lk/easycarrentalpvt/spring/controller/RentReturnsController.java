@@ -27,7 +27,8 @@ public class RentReturnsController {
 //        if (dto.getRDate().trim().length() <= 0 || dto.getUsedKm() <= 0 || dto.getReason().trim().length() <= 0) {
 //            throw new ValidateException("Field's Can't be Empty");
 //        }
-        rentReturnsService.addReturns(dto);
+        System.out.println(dto);
+//        rentReturnsService.addReturns(dto);
         return new ResponseEntity(new StandardResponse("200", "success", null, 0L), HttpStatus.OK);
     }
 

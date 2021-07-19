@@ -23,6 +23,7 @@ public class CustomerDTO {
     private String contactNumber;
     private String userName;
     private String password;
+    private String filePath;
 //    private List<RentOrderDTO> rentOrder = new ArrayList<>();
 
 
